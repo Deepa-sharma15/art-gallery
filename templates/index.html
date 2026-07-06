@@ -1,0 +1,617 @@
+/* ============================================================
+   ART GALLERY — Custom Stylesheet
+   Color Palette: White, Black, Gold (#C9A84C)
+   ============================================================ */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+    --gold: #C9A84C;
+    --gold-light: #E2C87A;
+    --gold-dark: #A88A3A;
+    --black: #0A0A0A;
+    --black-soft: #1A1A1A;
+    --white: #FFFFFF;
+    --off-white: #F8F6F1;
+    --gray-light: #E8E4DC;
+    --gray-mid: #8A8680;
+    --gray-dark: #3A3835;
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+    --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.08);
+    --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.10);
+    --shadow-hover: 0 16px 56px rgba(0, 0, 0, 0.18);
+    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --radius: 12px;
+}
+
+/* ---------- Global Reset & Base ---------- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--black);
+    background-color: var(--white);
+    line-height: 1.7;
+    font-weight: 400;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+/* ---------- Utility Classes ---------- */
+.text-gold {
+    color: var(--gold) !important;
+}
+
+.z-1 {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- Gold Decorative Line ---------- */
+.gold-line {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 2px;
+}
+
+/* ---------- Section Shared Styles ---------- */
+.section-label {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.2;
+}
+
+/* ============================================================
+   NAVIGATION BAR
+   ============================================================ */
+#mainNav {
+    padding: 1.2rem 0;
+    transition: var(--transition);
+    background: transparent;
+    z-index: 1000;
+}
+
+#mainNav.navbar-scrolled {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 0.7rem 0;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-brand {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white) !important;
+    letter-spacing: 0.5px;
+}
+
+.navbar-brand i {
+    color: var(--gold);
+}
+
+.navbar-nav .nav-link {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.75) !important;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 0.5rem 1.2rem !important;
+    position: relative;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1.2rem;
+    right: 1.2rem;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--white) !important;
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Hamburger icon color override */
+.navbar-toggler {
+    border: 1px solid rgba(201, 168, 76, 0.4);
+    padding: 0.4rem 0.6rem;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(201,168,76,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    background-image: url('https://picsum.photos/seed/art-gallery-hero/1920/1080');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(10, 10, 10, 0.55) 0%,
+        rgba(10, 10, 10, 0.70) 50%,
+        rgba(10, 10, 10, 0.90) 100%
+    );
+    z-index: 0;
+}
+
+.hero-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+}
+
+.hero-description {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 540px;
+    line-height: 1.8;
+}
+
+/* Gold Button */
+.btn-gold {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--black) !important;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 40px;
+    transition: var(--transition);
+    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.35);
+}
+
+.btn-gold:hover {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201, 168, 76, 0.5);
+    color: var(--black) !important;
+}
+
+.btn-gold-outline {
+    background: transparent;
+    color: var(--white) !important;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 1.5px solid var(--white);
+    border-radius: 50px;
+    padding: 8px 24px;
+    transition: var(--transition);
+}
+
+.btn-gold-outline:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--black) !important;
+}
+
+/* ============================================================
+   GALLERY SECTION
+   ============================================================ */
+.gallery-section {
+    background-color: var(--off-white);
+}
+
+/* Art Card */
+.art-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition);
+}
+
+.art-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.art-card-img {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+}
+
+.art-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.art-card:hover .art-card-img img {
+    transform: scale(1.08);
+}
+
+/* Hover Overlay on Card */
+.art-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.art-card:hover .art-card-overlay {
+    opacity: 1;
+}
+
+.art-card-info {
+    padding: 1.2rem 1.4rem 1.4rem;
+}
+
+.art-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 0.25rem;
+}
+
+.art-card-artist {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--gray-mid);
+    margin-bottom: 0;
+}
+
+.art-card-artist i {
+    color: var(--gold);
+    font-size: 0.8rem;
+}
+
+/* ============================================================
+   ABOUT SECTION
+   ============================================================ */
+.about-section {
+    background-color: var(--white);
+}
+
+.about-img-wrapper {
+    position: relative;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.about-img {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+    width: 100%;
+    height: auto;
+    z-index: 1;
+    position: relative;
+}
+
+/* Decorative frame behind image */
+.about-img-frame {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: -20px;
+    bottom: -20px;
+    border: 2px solid var(--gold);
+    border-radius: var(--radius);
+    z-index: 0;
+    transition: var(--transition);
+}
+
+.about-img-wrapper:hover .about-img-frame {
+    top: 12px;
+    left: 12px;
+    right: -12px;
+    bottom: -12px;
+}
+
+.about-text {
+    font-size: 0.95rem;
+    color: var(--gray-dark);
+    line-height: 1.85;
+}
+
+/* Stats */
+.stat-number {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.2;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 0;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+    background: var(--black);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-brand {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+
+.footer-brand i {
+    color: var(--gold);
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.footer-heading {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 1.2rem;
+    position: relative;
+    padding-bottom: 0.8rem;
+}
+
+.footer-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--gold);
+}
+
+/* Footer Links */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.6rem;
+}
+
+.footer-links a {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.55);
+    transition: var(--transition);
+    position: relative;
+    padding-left: 0;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+    padding-left: 8px;
+}
+
+/* Footer Contact */
+.footer-contact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-contact li {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.6;
+}
+
+.footer-contact li i {
+    color: var(--gold);
+    margin-top: 4px;
+    min-width: 20px;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.social-icon:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--black);
+    transform: translateY(-3px);
+}
+
+/* Footer Bottom / Copyright */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.2rem 0;
+    margin-top: 2rem;
+}
+
+.footer-bottom p {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+}
+
+/* ============================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================ */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background: rgba(10, 10, 10, 0.97);
+        backdrop-filter: blur(12px);
+        border-radius: var(--radius);
+        padding: 1rem;
+        margin-top: 0.5rem;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .navbar-nav .nav-link::after {
+        display: none;
+    }
+
+    .hero-section {
+        background-attachment: scroll;
+    }
+
+    .about-img-wrapper {
+        max-width: 360px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-title {
+        font-size: clamp(2.2rem, 8vw, 3rem);
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+    }
+
+    .btn-gold {
+        padding: 12px 32px;
+        font-size: 0.8rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .stat-number {
+        font-size: 1.6rem;
+    }
+
+    .about-img-wrapper {
+        max-width: 300px;
+    }
+}
+
+/* ============================================================
+   SCROLL-BAR STYLING (Webkit browsers)
+   ============================================================ */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--black-soft);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gold-dark);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold);
+}
